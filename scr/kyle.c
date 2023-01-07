@@ -81,6 +81,3 @@ int kyle(char **tokenList) {
 	return 1;
 }
 
-int term(char **tokenList) {
-	
-}

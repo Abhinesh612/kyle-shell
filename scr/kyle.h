@@ -13,8 +13,4 @@ char **parser(char *line);
 /* CREATING DUBLICATE PROCERSS ON THE TERMINAL */
 int kyle(char **tokenList);
 
-
-/* TESTING NEW PROCESS LOOP */
-int term(char **tokenList) {
-
 #endif // __KYLE_H

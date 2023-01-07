@@ -7,14 +7,19 @@
 #include <stdlib.h>
 
 void runLoop(void) {
-	int status;
+	int status = 1;
 	char *line;
 	char **cmd;
 	
-	do {
-		printf(PROMPT);
+	while(status) {
+		printPrompt(PROMPT);
 		line = readline();
 		cmd = parser(line);
-		status = kyle(cmd);
-	}while(status);
+		status = execute(cmd);
+
+		free(line);
+		line = NULL;
+		free(cmd);
+		cmd = NULL;
+	};
 }

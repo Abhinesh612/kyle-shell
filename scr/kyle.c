@@ -1,5 +1,6 @@
 #include "kyle.h"
 #include "errhandle.h"
+#include "builtin.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -30,7 +31,7 @@ char **parser(char *line) {
 	size_t buffer = BUFFER_TOKEN;
 	char **tokenList = (char**)calloc(buffer, sizeof(char*));
 	assert(tokenList != NULL && "couldn't allocate memory");
-	
+
 	/* PARSING TOKEN FROM LINE STDIN */
 	char *token = strtok(line, DELIMIT);
 	
@@ -81,3 +82,15 @@ int kyle(char **tokenList) {
 	return 1;
 }
 
+int execute(char **tokenList) {
+	assert(tokenList != NULL);
+	if (tokenList[0] != NULL) {
+		if (strcmp(tokenList[0], "exit") == 0)
+			return kyle_exit(tokenList);
+		if (strcmp(tokenList[0], "cd") == 0)
+			return kyle_cd(tokenList);
+		if (strcmp(tokenList[0], "kyle") == 0)
+			return kyle_kyle(tokenList);
+	}
+	return kyle(tokenList);
+}
